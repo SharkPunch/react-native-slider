@@ -183,7 +183,8 @@ var Slider = React.createClass({
       thumbTintColor: '#343434',
       thumbTouchSize: {width: 40, height: 40},
       debugTouchArea: false,
-      animationType: 'timing'
+      animationType: 'timing',
+      swapGestureXY: false
     };
   },
   componentWillMount() {
@@ -375,7 +376,7 @@ var Slider = React.createClass({
 
   _getValue(gestureState: Object) {
     var length = this.state.containerSize.width - this.state.thumbSize.width;
-    var thumbLeft = this._previousLeft + gestureState.dx;
+    var thumbLeft = this._previousLeft + (this.props.swapGestureXY ? gestureState.dy : gestureState.dx);
 
     var ratio = thumbLeft / length;
 
